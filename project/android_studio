@@ -1,0 +1,6 @@
+1.打包签名 
+	build->Generate Signed APK
+
+2. 查看签名：
+	keytool -list -v -keystore d:/anroid_jar_key.jks
+	
