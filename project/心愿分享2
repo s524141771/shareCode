@@ -1,0 +1,30 @@
+ android:gravity 
+ 	来指定文字的对齐方式,可选值有 top/bottom/left/right/center等，可以用 “ | ” 来同时指定多个值。
+ 	
+ android:layout_gravity 
+ 	是用于指定控件在布局中的对齐方式
+ 	
+android:layout_weight
+  	★允许我们使用比例的方式来指定控件的大小,只有在Linearlayout中该属性才有效。
+  	★首先按照声明的尺寸分配，剩余的空间再按照layout_weight进行分配
+	★使用改属性，一般将layout_width="0dp"
+	★1.平均分配
+		每个子控件都设置
+			android:layout_width="0dp" 和 android:layout_weight="1"		
+	★2.平均分配且对齐：
+    	在父控件里：android:baselineAligned="false"
+    	每个子控件设置 android:layout_weight="1" 和  android:layout_width="0dp"
+    	
+           ★3单个分配比例：	
+       	在父控件里 android:weightSum="2" 
+       	子控件 android:layout_weight="1" 和  android:layout_width="0dp"
+
+android:layout_centerHorizontal="true"
+	子控件相对父控件是否水平居中
+
+android:layout_below="@id/photo"
+	相对在photo的底部
+
+android:layout_toRightOf="@id/photo"
+	将该控件的左边缘与给定ID的控件右边缘对齐;       	
+	

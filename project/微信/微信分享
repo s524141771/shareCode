@@ -1,0 +1,17 @@
+1.下载sdk中jar
+2.拷贝样例中WXEntryActivity.java到包 wxapi 下 
+3.在oncreate中初始化
+    iwxapi= WXAPIFactory.createWXAPI(this, WXEntryActivity.APP_ID);
+    iwxapi.registerApp(WXEntryActivity.APP_ID);
+4.分享到朋友圈
+    private void wechartShare(){
+        WXWebpageObject webpage = new WXWebpageObject();
+        WXMediaMessage msg = new WXMediaMessage(webpage);
+        msg.mediaObject=new WXImageObject(genSpringCard()); //用于标识分享时带有图像/视频等 ，为屏幕截图使用
+        SendMessageToWX.Req req = new SendMessageToWX.Req();
+        req.transaction =String.valueOf(System.currentTimeMillis());
+        req.message=msg;
+        req.scene=SendMessageToWX.Req.WXSceneTimeline;
+        iwxapi.sendReq(req);
+    }  
+       

@@ -1,0 +1,50 @@
+使页面全屏，可在清单配置：
+	<activity android:name=".MainActivity" android:theme="@android:style/Theme.NoTitleBar.Fullscreen">
+
+
+打开图库，点击后将uri设置到imageview
+1.
+    mPhoto.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View v) {
+        //打开系统图库0000
+        Intent intent = new Intent(Intent.ACTION_PICK, null);
+        intent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "image/*");
+        startActivityForResult(intent, 100);
+    }
+ });
+2.
+ protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    super.onActivityResult(requestCode, resultCode, data);
+    if(resultCode==RESULT_OK && requestCode==100){
+        mPhoto.setImageURI(data.getData());
+    }
+}
+3. 添加读取存储权限：
+  <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+  
+  
+设置自定义字体：从assets文件中获得字体文件，assets是个不用需要编译的资源文件
+    mWord=(EditText)findViewById(R.id.word);
+    mWord.setTypeface(Typeface.createFromAsset(getAssets(),"fonts/test.ttf"));
+    
+    
+屏幕截图：
+    private Bitmap genSpringCard(){
+        //获取截图
+        mShare.setVisibility(View.INVISIBLE);
+        View view=getWindow().getDecorView();
+        view.setDrawingCacheEnabled(true);
+        view.buildDrawingCache();
+        return view.getDrawingCache();
+    }
+    
+  
+预留边框技巧：
+ 1.在矩形区域可设置背景色
+ 2.然后图片比矩形小且居中，这样边缘留出来的可认为是边框
+    
+    
+    
+    
+    
